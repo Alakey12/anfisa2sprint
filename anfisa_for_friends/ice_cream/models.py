@@ -21,12 +21,12 @@ class Category(PublishedModel):
 class Topping(PublishedModel):
     title = models.CharField(max_length=256, verbose_name='Название')
     slug = models.SlugField(
-        max_length=64, unique=True, verbose_name='Порядок отображения'
+        max_length=64, unique=True, verbose_name='Слаг'
         )
 
     class Meta:
-        verbose_name = 'Топинг'
-        verbose_name_plural = 'Топинги'
+        verbose_name = 'Топпинг'
+        verbose_name_plural = 'Топпинги'
 
     def __str__(self) -> str:
         return self.title
@@ -45,7 +45,7 @@ class Wrapper(PublishedModel):
 
 class IceCream(PublishedModel):
     title = models.CharField(max_length=256, verbose_name='Название')
-    description = models.TextField(verbose_name='Обисание')
+    description = models.TextField(verbose_name='Описание')
     wrapper = models.OneToOneField(
         Wrapper,
         on_delete=models.SET_NULL,
@@ -60,7 +60,7 @@ class IceCream(PublishedModel):
         related_name='ice_creams',
         verbose_name='Категория'
     )
-    toppings = models.ManyToManyField(Topping, verbose_name='Топинг')
+    toppings = models.ManyToManyField(Topping, verbose_name='Топпинги')
     is_on_main = models.BooleanField(default=False, verbose_name='На главную')
 
     class Meta:
